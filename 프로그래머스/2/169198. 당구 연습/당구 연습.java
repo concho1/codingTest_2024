@@ -37,7 +37,7 @@ class Solution {
                 if(tmD < minDistance) minDistance = tmD;
             }
         }
-        //공이 겹칠때 처리
+        //공이 겹칠때 처리 x값 차이는 1000 + 1000 => 2000이 최대
         if( y >= startY && x == startX ){      // 상 겹침
             newBall[0][0] = 3000;
             newBall[0][1] = 3000;
@@ -62,7 +62,6 @@ class Solution {
         int i = 0;
         for(int[] b : balls){
             int minDistance = createNewBall(startX,startY,b[0],b[1], n, m);
-            //System.out.println(minDistance);
             answer[i] = minDistance;
             i++;
         }
