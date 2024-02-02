@@ -1,6 +1,6 @@
 import java.util.*;
 class 뽑기기계{
-    HashMap<Integer,LinkedList<Integer>> container = new HashMap<>();
+    private HashMap<Integer,LinkedList<Integer>> container = new HashMap<>();
     
     뽑기기계(int[][] board){
         for(int i=0; i<board.length; i++){
@@ -20,7 +20,7 @@ class 뽑기기계{
 }
 
 class 바구니{
-    LinkedList<Integer> bag = new LinkedList<>();
+    private LinkedList<Integer> bag = new LinkedList<>();
     
     // 터짐 : true, 안터짐: false
     boolean putIn(int doll){
