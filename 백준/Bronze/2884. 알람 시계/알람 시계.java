@@ -10,6 +10,7 @@ public class Main {
         if(time < 0) time += 24*60;
         int h = time/60;
         int m = time%60;
-        System.out.printf("%d %d", h, m);
+        System.out.println(h);
+        System.out.println(m);
     }
 }
