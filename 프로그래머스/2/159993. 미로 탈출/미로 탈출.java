@@ -1,25 +1,18 @@
 import java.util.*;
 class Node {
-    int x;
-    int y;
-    int cnt;
-    
-    Node(){}
+    int x;  int y;  int cnt;
     
     Node(int x, int y, int cnt){
         this.x = x;
         this.y = y;
         this.cnt = cnt;
     }
-    void set(int x, int y, int cnt){
-        this.x = x;
-        this.y = y;
-        this.cnt = cnt;
-    }
 }
 class Solution {
-    static int bfs(boolean[][] visited, char[][] chMaps, Node startNode){
+    static int bfs(boolean[][] visited, char[][] chMaps,int[] start){
+        Node startNode = new Node(start[1], start[0], 0);
         var visit = new LinkedList<Node>();
+        
         visit.add(startNode);
         visited[startNode.y][startNode.x] = true;
         
@@ -52,30 +45,24 @@ class Solution {
         char[][] chMaps = new char[maps.length][maps[0].length()];
         boolean[][] visited1 = new boolean[maps.length][maps[0].length()];
         boolean[][] visited2 = new boolean[maps.length][maps[0].length()];
-        Node startNode = new Node();
-        Node endNode = new Node();
+        int[] start = {0,0};    int[] end = {0,0};
         
         for(int i=0; i<maps.length; i++){
             chMaps[i] = maps[i].toCharArray();
             for(int j=0; j<maps[0].length(); j++){
+                
                 switch(chMaps[i][j]){
                     case 'S':   
-                        startNode.set(j,i,0);
-                        break;
+                        start[0] = i;   start[1] = j;                   break;
                     case 'X':
-                        visited1[i][j] = true; 
-                        visited2[i][j] = true;
-                        break;
+                        visited1[i][j] = true; visited2[i][j] = true;   break;
                     case 'E':
-                        endNode.set(j,i,0);
-                        break;
+                        end[0] = i;     end[1] = j;                     break;
                 }
             }
         }
-        int cnt1 = bfs(visited1,chMaps,startNode);
-        int cnt2 = bfs(visited2,chMaps,endNode);
+        int cnt1 = bfs(visited1,chMaps,start), cnt2 = bfs(visited2,chMaps,end);
         
-        if(cnt1 == -1 || cnt2 == -1) return -1;
-        else return cnt1 + cnt2;
+        return (cnt1 == -1 || cnt2 == -1) ? -1 : cnt1 + cnt2;
     }
 }
